@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>Testes JS </title>
+	</head>
+	<body>
+		<script>
+
+			//
+			(function () {
+				console.log("Happened!");
+			}());
+
+
+			//Get window object
+			//Bad practice
+			(function () {
+				console.log(this);
+
+				console.log("Happened!");
+			}());
+
+			//No much pretty practice
+			(function (global) {
+				console.log(global);
+			}(this));
+
+			//Good practice 
+			(function () {
+				"use strict";
+				console.log(this);
+			}.call(this));
+
+		</script>
+	</body>
+</html>
+

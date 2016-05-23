@@ -1,0 +1,16 @@
+<script>
+	var Person = {
+		init: function (name) {
+			this.name = name;
+			this.lastName = "";
+		},
+
+		setLastName: function (lastName) {
+			this.lastName = lastName;
+		},
+
+		getName: function () {
+			return this.name + " " + this.lastName;
+		}
+	}
+</script>

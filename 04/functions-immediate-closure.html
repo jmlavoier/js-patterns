@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>Testes JS </title>
+	</head>
+	<body>
+		<script>
+			var getResult = (function () {
+				var res = 2 + 2;
+
+				return function () {
+					return res;
+				};
+			}());
+
+			console.log(getResult());
+
+			var o = {
+				message: (function () {
+					var who = "me",
+						what = "call";
+
+					return what + " " + who;
+
+				}()),
+
+				getMessage: function () {
+					return this.message;
+				}
+			}
+
+			console.log("getMessage: ", o.getMessage());
+			console.log("message: ", o.message);
+
+		</script>
+	</body>
+</html>
+

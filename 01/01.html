@@ -1,0 +1,112 @@
+
+<h4>Hosting: o problema das declarações var espalhadas Pag. 31 </h4>
+
+<script>
+myname = "global";
+function func(){
+	document.write(myname); //undefined
+	document.write("<br>");
+	var myname = "local";
+	document.write(myname); //local 
+}
+func();
+</script>
+<br/><br/>
+
+<h4>Loops for Pag. 32 </h4>
+Antipattern:
+<script>
+var myarray = [0,1,2,3,4,5,6];
+for (var i = 0; i < myarray.length; i++){
+	document.write(myarray[i]+" ");
+}
+</script>
+
+<br>
+Pattern to loops:
+<script>
+var myarray = [0,1,2,3,4,5,6];
+for (var i = 0, max = myarray.length; i < max; i++){
+	document.write(myarray[i]+" ");
+}
+</script>
+
+<br>
+Unic var pattern, to array not constant:
+<script>
+var i = 0,
+	max,
+	myarray = [0];
+
+for (i = 0, max = myarray.length; i < max; i++){
+	if (max < 10) myarray.push(i+1);
+	max = myarray.length;
+	document.write(myarray[i]+" ");
+}
+</script>
+
+<br>
+<br>
+<h4>Loops pattern changed Page 34.</h4>
+First pattern using <strong>for (i = myarray.length; i--;) </strong>:<br>
+<script>
+var i, myarray = [1,2,3,4,5,6];
+for (i = myarray.length; i--;){
+	document.write(i + "=>" + myarray[i]+"; ");
+}
+</script>
+
+<br>
+<br>
+Second pattern using <strong>while (i--) </strong>:<br>
+<script>
+var myarray = [1,2,3,4,5,6], 
+	i = myarray.length;
+
+while (i--){
+	document.write(i + "=>" + myarray[i]+"; ");
+}
+</script>
+
+<p>
+	Estas são otimizações que serão percebidas apensa em operações de desempenho crítico.
+</p>
+
+<br>
+Loop <strong>for-in</strong>: <strong>Page 34-35:</strong> <br>
+<p>
+	Importância de usar <strong>hasOwnProperty()</strong> para iterar com objetos para excluir propriedades herdadas por meio de <strong>prototype</strong>
+</p>
+<script>
+	var man= {
+		hands: 2,
+		legs: 2,
+		heads: 1
+	}
+	// em algum outro lugar no código
+	// um método foi adicionado a todos os objetos
+	if (typeof Object.prototype.clone === "undefined") {
+		Object.prototype.clone = function () {document.write("<br><i>Executou clone!</i><br><br>")};
+	}
+
+	document.write("Chamando clone:");
+	man.clone();
+
+	document.write("Loop for-in:<br>");
+	for (var i in man) {
+		document.write(i + ": " +  man[i]+  "<br>");
+	}
+
+	document.write("<br><br>");
+
+	document.write("Loop for-in com <strong>hasOwnProperty</strong>:<br>");
+	for (var i in man) {
+		if (man.hasOwnProperty(i)){
+			document.write(i + ": " +  man[i]+  "<br>");
+		}
+	}
+</script>
+<p>
+	
+</p>
+
