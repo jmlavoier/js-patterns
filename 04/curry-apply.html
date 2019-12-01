@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>Testes JS </title>
+	</head>
+	<body>
+		<script>
+
+			var sayHi = function(who) {
+				console.log(this);
+				return "Hello" + (who ? ", " + who : "") + "!";
+			}
+
+			sayHi(); //Hello
+			sayHi("World"); //Hello, World!
+
+			//function apply
+			/* the first argument will be applied to this, if is is null the "this" is the global element. */
+			sayHi.apply(null, ["hello"]); //Hello, hello!
+
+			var alien = {
+				sayHi: function (who) {
+					return "Hello" + (who ? ", " + who : "") + "!";
+				}
+			};
+
+			alien.sayHi('world'); //Hello, world!
+			
+			/* Function.prototype.apply */
+			console.log(sayHi.apply(alien, ["humans"]));
+
+			/*  Function.prototype.call */
+			console.log(sayHi.call(alien, "humans"));//Hello, humans!
+
+
+		</script>
+	</body>
+</html>
+

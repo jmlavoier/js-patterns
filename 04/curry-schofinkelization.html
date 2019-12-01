@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>Testes JS </title>
+	</head>
+	<body>
+		<script>
+
+			function add(x, y) {
+				var oldx = x, oldy = y;
+				if (typeof oldy === "undefined") {
+					return function (newy) {
+						return oldx + newy;
+					};
+				}
+				return x + y;
+			}
+
+			typeof add(5); //function
+			add(3)(4) // 7
+
+			var add2000 = add(2000);
+			console.log(add2000(10)); //2010
+
+		</script>
+	</body>
+</html>
+

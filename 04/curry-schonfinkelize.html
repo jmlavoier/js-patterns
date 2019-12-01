@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>Testes JS </title>
+	</head>
+	<body>
+		<script>
+
+			/* Schonfinkelize Function */
+			function schonfinkelize(fn) {
+				var slice = Array.prototype.slice,
+					stored_args = slice.call(arguments, 1);
+
+				return function () {
+					var new_args = slice.call(arguments),
+						args = stored_args.concat(new_args);
+
+					return fn.apply(null, args);
+				}
+			}
+
+
+			function add(x,y,a) {
+				return x + y + a;
+			}
+
+
+			var newadd = schonfinkelize(add, 5);
+			console.log(newadd(4)); 
+
+			console.log(schonfinkelize(add, 6,6)(7));
+
+
+		</script>
+	</body>
+</html>
+
